@@ -83,6 +83,7 @@ In the Address field enter the URL to the MultiplyWorkflow xamlx (http://localho
 ##WRITING THE WORKFLOW TEST
 Add the following code to the MultiplyTest method:
 
+```C#
 var num1 = 2;
 var num2 = 5;
 var expectedResult = 10;
@@ -94,6 +95,7 @@ using (var multiplyClient = new MultiplyWorkflowService.ServiceClient())
 }
 
 Assert.AreEqual(expectedResult, actualResult);
+```
 
 The test creates a WCF service client for the MultiplyWorkflow service and invokes the multiply method passing two integers as parameters and receiving an integer result.
 
