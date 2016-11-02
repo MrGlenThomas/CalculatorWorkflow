@@ -55,8 +55,9 @@ To send the result variable to the caller of the Multiply method, click the “�
 Select the Parameters radio button and add a parameter called result of type Int32, set the value to the result workflow variable and click OK.
  
 Setting the Content property of the SendReply activity will change the return type of the service method generated through contract inference to the type specified and the value of the return object will be set automatically to what is specified in the value field. This could be a workflow variable, a C# expression or simply a constant value.
-PART 2 – HOSTING THE WORKFLOW SERVICE
-CONFIGURING THE SERVICE PROJECT
+
+#PART 2 – HOSTING THE WORKFLOW SERVICE
+##CONFIGURING THE SERVICE PROJECT
 Right-click the CalculatorWorkflowService project and select Properties. Open the Web settings and under the Server section select “Local IIS”. You will see a prompt asking if you want to configure the virtual directory; click Yes.
 
 ###IIS Hosting
