@@ -120,9 +120,11 @@ Add the following code to the interface to create a multiply operation contract 
 ```C#
 [OperationContract]
 int Multiply(int value1, int value2);
+```
 
 Now add the implementation of the method in the CalculatorService class:
 
+```C#
 public int Multiply(int value1, int value2)
 {
     return value1 * value2;
