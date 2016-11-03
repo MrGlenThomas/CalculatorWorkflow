@@ -101,3 +101,54 @@ Assert.AreEqual(expectedResult, actualResult);
 The test creates a WCF service client for the MultiplyWorkflow service and invokes the multiply method passing two integers as parameters and receiving an integer result.
 
 Run the test and check that the assertion passes.
+
+#PART 4 – ADDING A SERVICE METHOD AS AN ACTIVITY
+##THE OBJECTIVE
+In order to make the multiplication log reusable across workflows we will refactor it to a web service method that the workflow can make use of as an activity.
+
+##CREATING THE SUPPORTING WEB SERVICE
+In Visual Studio 2015 select File -> New -> Project.
+Under the Visual C# project templates, select WCF and then choose the WCF Service Application project template.
+In the name box enter “CalculatorWorkflowService.Web” and click OK.
+ 
+A basic WCF service interface called “IService1” and implementation called “Service1.svc have been created.
+Rename the IService1 interface to ICalculatorService and implementation class to CalculatorService.
+Right-click the newly renamed CalculatorService.svc and select “View Markup”. Change the Service attribute of the ServiceHost element from "CalculatorWorkflowService.Web.Service1" to "CalculatorWorkflowService.Web.CalculatorService ".
+Remove the CompositeType data contract and the default methods from interface and class.
+Add the following code to the interface to create a multiply operation contract for the service:
+
+```C#
+[OperationContract]
+int Multiply(int value1, int value2);
+
+Now add the implementation of the method in the CalculatorService class:
+
+public int Multiply(int value1, int value2)
+{
+    return value1 * value2;
+}
+```
+
+Open the CalculatorWorkflowService.Web project settings and under the Web section change the server to Local IIS.
+Now build the CalculatorWorkflowService.Web project to set up the new WCF service in IIS.
+
+##ADDING A SERVICE REFERNCE TO THE WEB SERVICE
+Now that the web service is running in IIS we can download the service contract to the workflow project so that we can use the service methods as activities.
+Right-click the CalculatorWorkflowService (WCF workflow) project and select Add -> Service Reference.
+In the Address field enter the URL to the CalculatorService.svc (http://localhost/CalculatorWorkflowService.Web/CalculatorService.svc) and click Go. The operations from the WCF service contract will be displayed. Change the namespace to “CalculatorServices” and click OK. A Service References folder containing the operation contract will be added to the test project.
+A notification will be displayed to let you know that new activities have been generated.
+ 
+##ADDING THE SERVICE METHOD ACTIVITY TO THE WORKFLOW
+Right-click the CalculatorWorkflowService project and select Build to generate the new activity.
+Open the MultiplyWorkflow xamlx in the workflow designer and delete the Assign activity that we added earlier.
+Expand the toolbox and you will see a new section labelled “CalculatorWorkflowService.CalculatorServices.Activities”.
+Drag-drop the Multiply activity to the workflow at the same position that the Assign activity used to be.
+Open the activity properties in the property inspector and set the properties as below:
+•	MultiplyResult = result
+•	value1 = x
+•	value2 = y
+
+Right-click the CalculatorWorkflowService project and select Build.
+
+##TESTING THE WORKFLOW
+Open the MultiplyTests class that we created earlier and run the MultiplyTest method to assert that the workflow still executes with the same logic as used previously.
