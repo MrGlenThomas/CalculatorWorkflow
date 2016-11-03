@@ -146,9 +146,9 @@ Open the MultiplyWorkflow xamlx in the workflow designer and delete the Assign a
 Expand the toolbox and you will see a new section labelled “CalculatorWorkflowService.CalculatorServices.Activities”.
 Drag-drop the Multiply activity to the workflow at the same position that the Assign activity used to be.
 Open the activity properties in the property inspector and set the properties as below:
-•	MultiplyResult = result
-•	value1 = x
-•	value2 = y
+* MultiplyResult = result
+* value1 = x
+* value2 = y
 
 Right-click the CalculatorWorkflowService project and select Build.
 
