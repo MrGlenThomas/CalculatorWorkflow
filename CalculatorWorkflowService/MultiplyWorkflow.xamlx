@@ -1,12 +1,16 @@
-﻿<WorkflowService mc:Ignorable="sap sap2010 sads" p1:TextExpression.Namespaces="{x:Reference __ReferenceID1}" p1:TextExpression.References="{x:Reference __ReferenceID2}" ConfigurationName="Service1" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap2010:WorkflowViewState.IdRef="WorkflowService_1" Name="MultiplyWorkflow"
+﻿<WorkflowService mc:Ignorable="sads sap sap2010" p1:TextExpression.Namespaces="{x:Reference __ReferenceID1}" p1:TextExpression.References="{x:Reference __ReferenceID2}" ConfigurationName="Service1" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap2010:WorkflowViewState.IdRef="WorkflowService_1" Name="MultiplyWorkflow"
  xmlns="http://schemas.microsoft.com/netfx/2009/xaml/servicemodel"
+ xmlns:cc="clr-namespace:CalculatorWorkflowService.CalculatorServices;assembly=CalculatorWorkflowService"
+ xmlns:cca="clr-namespace:CalculatorWorkflowService.CalculatorServices.Activities;assembly=CalculatorWorkflowService"
  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
  xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
  xmlns:p="http://tempuri.org/"
  xmlns:p1="http://schemas.microsoft.com/netfx/2009/xaml/activities"
  xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
  xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
  xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:sc="clr-namespace:System.ComponentModel;assembly=System"
  xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
  xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
@@ -70,18 +74,24 @@
         </p1:OutArgument>
       </ReceiveParametersContent>
     </Receive>
-    <p1:Assign sap2010:WorkflowViewState.IdRef="Assign_1">
-      <p1:Assign.To>
+    <cca:Multiply mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces">
+      <cca:Multiply.MultiplyResult>
         <p1:OutArgument x:TypeArguments="x:Int32">
           <mca:CSharpReference x:TypeArguments="x:Int32">result</mca:CSharpReference>
         </p1:OutArgument>
-      </p1:Assign.To>
-      <p1:Assign.Value>
+      </cca:Multiply.MultiplyResult>
+      <cca:Multiply.value1>
         <p1:InArgument x:TypeArguments="x:Int32">
-          <mca:CSharpValue x:TypeArguments="x:Int32">x * y</mca:CSharpValue>
+          <mca:CSharpValue x:TypeArguments="x:Int32">x</mca:CSharpValue>
         </p1:InArgument>
-      </p1:Assign.Value>
-    </p1:Assign>
+      </cca:Multiply.value1>
+      <cca:Multiply.value2>
+        <p1:InArgument x:TypeArguments="x:Int32">
+          <mca:CSharpValue x:TypeArguments="x:Int32">y</mca:CSharpValue>
+        </p1:InArgument>
+      </cca:Multiply.value2>
+      <sap2010:WorkflowViewState.IdRef>Multiply_1</sap2010:WorkflowViewState.IdRef>
+    </cca:Multiply>
     <SendReply Request="{x:Reference __ReferenceID0}" DisplayName="SendResponse" sap2010:WorkflowViewState.IdRef="SendReply_1">
       <SendParametersContent>
         <p1:InArgument x:TypeArguments="x:Int32" x:Key="result">
@@ -89,21 +99,21 @@
         </p1:InArgument>
       </SendParametersContent>
     </SendReply>
-    <sads:DebugSymbol.Symbol>d3NkOlxkb2N1bWVudHNcdmlzdWFsIHN0dWRpbyAyMDE1XFByb2plY3RzXENhbGN1bGF0b3JXb3JrZmxvd1NlcnZpY2VcQ2FsY3VsYXRvcldvcmtmbG93U2VydmljZVxNdWx0aXBseVdvcmtmbG93LnhhbWx4Cg0DXREBATYFSA8BIkkFVBEBFVUFWxEBAkILQlEBL0ULRVEBKTsPO1wBI1ELUU0BHEwLTFYBFlgLWE4BAw==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d4UBQzpcVXNlcnNcZ2xlbi50aG9tYXNcRG9jdW1lbnRzXFZpc3VhbCBTdHVkaW8gMjAxNVxQcm9qZWN0c1xDYWxjdWxhdG9yV29ya2Zsb3ctbWFzdGVyXENhbGN1bGF0b3JXb3JrZmxvd1NlcnZpY2VcTXVsdGlwbHlXb3JrZmxvdy54YW1seAsRA2cRAQE6BUwPAShNBV4UARVfBWURAQJGC0ZRATVJC0lRAS8/Dz9cASlQC1BWASJVC1VJARxaC1pJARZiC2JOAQM=</sads:DebugSymbol.Symbol>
   </p1:Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="Receive_1" sap:VirtualizedContainerService.HintSize="255.2,88" />
-      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="255.2,62.4" />
-      <sap2010:ViewStateData Id="SendReply_1" sap:VirtualizedContainerService.HintSize="255.2,88" />
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="277.6,443.2">
+      <sap2010:ViewStateData Id="Receive_1" sap:VirtualizedContainerService.HintSize="255,90" />
+      <sap2010:ViewStateData Id="Multiply_1" sap:VirtualizedContainerService.HintSize="255,22" />
+      <sap2010:ViewStateData Id="SendReply_1" sap:VirtualizedContainerService.HintSize="255,90" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="277,406">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WorkflowService_1" sap:VirtualizedContainerService.HintSize="307.2,512.8" />
+      <sap2010:ViewStateData Id="WorkflowService_1" sap:VirtualizedContainerService.HintSize="307,476" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </WorkflowService>

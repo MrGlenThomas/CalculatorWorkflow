@@ -1,0 +1,84 @@
+<Activity mc:Ignorable="sap2010 sads" x:Class="CalculatorWorkflowService.CalculatorServices.Activities.Multiply" this:Multiply.EndpointConfigurationName="BasicHttpBinding_ICalculatorService"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:cc="clr-namespace:CalculatorWorkflowService.CalculatorServices;assembly=CalculatorWorkflowService, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"
+ xmlns:cc1="clr-namespace:CalculatorWorkflowService.CalculatorServices;assembly=CalculatorWorkflowService"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:p="http://tempuri.org/"
+ xmlns:p1="http://schemas.microsoft.com/netfx/2009/xaml/servicemodel"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:sc="clr-namespace:System.ComponentModel;assembly=System"
+ xmlns:this="clr-namespace:CalculatorWorkflowService.CalculatorServices.Activities"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="EndpointConfigurationName" Type="x:String">
+      <x:Property.Attributes>
+        <sc:DefaultValueAttribute>
+          <x:Arguments>
+            <x:String>BasicHttpBinding_ICalculatorService</x:String>
+          </x:Arguments>
+        </sc:DefaultValueAttribute>
+      </x:Property.Attributes>
+    </x:Property>
+    <x:Property Name="value1" Type="InArgument(x:Int32)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
+    <x:Property Name="value2" Type="InArgument(x:Int32)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
+    <x:Property Name="MultiplyResult" Type="OutArgument(x:Int32)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>Assembly references and imported namespaces serialized as XML namespaces</mva:VisualBasic.Settings>
+  <Sequence>
+    <Sequence.Variables>
+      <x:Reference>__ReferenceID1</x:Reference>
+      <x:Reference>__ReferenceID2</x:Reference>
+    </Sequence.Variables>
+    <p1:Send x:Name="__ReferenceID0" Action="http://tempuri.org/ICalculatorService/Multiply" OperationName="Multiply" ServiceContractName="p:ICalculatorService">
+      <p1:Send.CorrelationInitializers>
+        <p1:RequestReplyCorrelationInitializer>
+          <p1:RequestReplyCorrelationInitializer.CorrelationHandle>
+            <InArgument x:TypeArguments="p1:CorrelationHandle">
+              <VariableValue x:TypeArguments="p1:CorrelationHandle">
+                <VariableValue.Variable>
+                  <Variable x:TypeArguments="p1:CorrelationHandle" x:Name="__ReferenceID2" />
+                </VariableValue.Variable>
+              </VariableValue>
+            </InArgument>
+          </p1:RequestReplyCorrelationInitializer.CorrelationHandle>
+        </p1:RequestReplyCorrelationInitializer>
+      </p1:Send.CorrelationInitializers>
+      <p1:SendMessageContent>
+        <InArgument x:TypeArguments="cc1:MultiplyRequest">[New CalculatorWorkflowService.CalculatorServices.MultiplyRequest() With { .value1 = value1, .value2 = value2 }]</InArgument>
+      </p1:SendMessageContent>
+      <p1:Send.EndpointConfigurationName>
+        <PropertyReference x:TypeArguments="x:String" PropertyName="EndpointConfigurationName" />
+      </p1:Send.EndpointConfigurationName>
+    </p1:Send>
+    <p1:ReceiveReply Request="{x:Reference __ReferenceID0}" Action="http://tempuri.org/ICalculatorService/MultiplyResponse">
+      <p1:ReceiveMessageContent>
+        <OutArgument x:TypeArguments="cc1:MultiplyResponse">
+          <VariableReference x:TypeArguments="cc1:MultiplyResponse">
+            <VariableReference.Variable>
+              <Variable x:TypeArguments="cc1:MultiplyResponse" x:Name="__ReferenceID1" Name="tempResult_aa6047280f9b4a24b81138b239ed168f" />
+            </VariableReference.Variable>
+          </VariableReference>
+        </OutArgument>
+      </p1:ReceiveMessageContent>
+    </p1:ReceiveReply>
+    <Assign>
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:Int32">[MultiplyResult]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:Int32">[tempResult_aa6047280f9b4a24b81138b239ed168f.MultiplyResult]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <sads:DebugSymbol.Symbol>d+IBQzpcVXNlcnNcZ2xlbi50aG9tYXNcRG9jdW1lbnRzXFZpc3VhbCBTdHVkaW8gMjAxNVxQcm9qZWN0c1xDYWxjdWxhdG9yV29ya2Zsb3ctbWFzdGVyXENhbGN1bGF0b3JXb3JrZmxvd1NlcnZpY2VcU2VydmljZSBSZWZlcmVuY2VzXENhbGN1bGF0b3JTZXJ2aWNlc1xDYWxjdWxhdG9yV29ya2Zsb3dTZXJ2aWNlLkNhbGN1bGF0b3JTZXJ2aWNlcy5JQ2FsY3VsYXRvclNlcnZpY2UuTXVsdGlwbHkueGFtbAklA1MOAgEBKgU+DwIBCj8FSRcCAQdKBVEOAgECOTs5qwECAQwvDzMfAgELQgtGHwIBCU8vT2sCAQVMMExAAgED</sads:DebugSymbol.Symbol>
+  </Sequence>
+</Activity>

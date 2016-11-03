@@ -4,11 +4,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculatorWorkflowService", "CalculatorWorkflowService\CalculatorWorkflowService.csproj", "{2445BC6E-831B-41EE-A352-24B8C7968985}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2E45AE79-38D4-4414-A210-0AD1EB545414} = {2E45AE79-38D4-4414-A210-0AD1EB545414}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculatorWorkflowService.Tests", "CalculatorWorkflowService.Tests\CalculatorWorkflowService.Tests.csproj", "{3C8C5F01-0F4F-496A-A93A-5EE96B32271C}"
 	ProjectSection(ProjectDependencies) = postProject
 		{2445BC6E-831B-41EE-A352-24B8C7968985} = {2445BC6E-831B-41EE-A352-24B8C7968985}
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculatorWorkflowService.Web", "CalculatorWorkflowService.Web\CalculatorWorkflowService.Web.csproj", "{2E45AE79-38D4-4414-A210-0AD1EB545414}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +29,10 @@ Global
 		{3C8C5F01-0F4F-496A-A93A-5EE96B32271C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C8C5F01-0F4F-496A-A93A-5EE96B32271C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C8C5F01-0F4F-496A-A93A-5EE96B32271C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E45AE79-38D4-4414-A210-0AD1EB545414}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E45AE79-38D4-4414-A210-0AD1EB545414}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E45AE79-38D4-4414-A210-0AD1EB545414}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E45AE79-38D4-4414-A210-0AD1EB545414}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
